@@ -177,18 +177,13 @@ export default class Profile extends Component {
       <View style={styles.container}>
         
         <View style={styles.header}>
-        <Icon name="cog" style={{
-                            position: 'absolute',
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                            
-                        }} />
+          <Text style={{alignSelf: 'flex-end'}} onPress={()=> Actions.setting({})}>
+            <Icon   name='ellipsis-v' size={30} color={'#fff'} />
+          </Text>
           <View style={styles.profilrpicwrap}>
             <Image style={styles.profilrpic} source={require('./rakesh.jpg')}></Image>
           </View>
-          <Text style={styles.name}>Rakes Sharma</Text>
+          <Text style={styles.username}>Rakes Sharma</Text>
           
           <View >
           <Text style={styles.name} > Country - <Text style={styles.pos}>India</Text></Text>
@@ -196,12 +191,6 @@ export default class Profile extends Component {
             <Text style={styles.name} > Achievements - <Text style={styles.pos}>State level Player</Text> </Text>
             <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.team({})}>
               <Text style={styles.name}> Teams </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.editprofile({})}>
-              <Text style={styles.name}> EditProfile </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => ''}>
-              <Text style={styles.name}> Log Out </Text>
             </TouchableOpacity>
             
           </View>
@@ -225,10 +214,14 @@ const styles = StyleSheet.create({
   },
   header:{
     flex:1,
-    backgroundColor: 'rgba(0,0,0, 0.5)',
-    alignItems: 'center',
-    
     padding:20,
+  },
+  username: {
+    fontSize:22,
+    marginTop:10,
+    color:"#fff",
+    fontWeight:'bold',
+    alignSelf:'center'
   },
   background: {
     flex: 1,
@@ -239,7 +232,6 @@ const styles = StyleSheet.create({
   name:{
     fontSize:22,
     marginTop:10,
-
     color:"#fff",
     fontWeight:'bold'
   },
@@ -249,6 +241,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: 'rgba(0,0,0,0.4)',
     borderWidth:16,
+    alignSelf: 'center',
   },
   profilrpic: {
     flex: 1,
