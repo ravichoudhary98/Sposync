@@ -15,27 +15,29 @@ export default class Settings extends Component {
   render() {
     return(
         <View style={styles.container}>
-            <View style={styles.profilrpicwrap}>
+            <View >
                 <Avatar
+                    style={styles.profilepicwrap}
                     size='xlarge'
                     rounded
                     title="RS"
-                    onPress={() => console.log("Works!")}
-                    onLongPress={() => Actions.editprofile({})}
+                    onPress={() => Actions.editprofile({})}
+                    onLongPress={() => console.log("Works!")}
                     activeOpacity={0.7}
                     source={require('./rakesh.jpg')}
+                    showEditButton
                     
                     />
                 
             </View>
             <View >
                 
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.editprofile({})}>
-                    <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="pencil" size={20} color={'#fff'} >    EditProfile </Icon>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.editprofile({}) }>
+                    <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="pencil" size={22} color={'#fff'} >    EditProfile </Icon>
                 </TouchableOpacity>
             </View> 
             
-            <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.editprofile({})}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.about({})}>
               <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="info" size={22} color={'#fff'} >      About </Icon>
             </TouchableOpacity>
 
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     borderWidth:11,
     color:"#fff",
   },
-  profilrpicwrap:{
+  profilepicwrap:{
     width:180,
     height:180,
     borderRadius: 100,
@@ -70,13 +72,6 @@ const styles = StyleSheet.create({
     borderWidth:11,
     alignSelf: 'center'
   },
-  profilrpic: {
-    flex: 1,
-    width:null,
-    borderRadius:100,
-    alignSelf: 'center',
-    borderColor:'#fff',
-    borderWidth:4
-  },
+  
 
 });

@@ -105,15 +105,7 @@ export default class Login extends Component {
   }
 }
 
-const resizeMode = 'center';
-const videoJsOptions = {
-    autoplay: true,
-    controls: true,
-    sources: [{
-      src: '/path/to/video.mp4',
-      type: 'video/mp4'
-    }]
-  }
+
 
 const styles = StyleSheet.create({
   container: {

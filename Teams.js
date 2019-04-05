@@ -4,6 +4,7 @@ import {
   Text,
   View,
   AppRegistry,
+  ViewPagerAndroid,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -16,11 +17,7 @@ export default class Team extends Component {
       <View style={styles.container}>
         <List>
             <Text style={styles.pos}>Dallas Cowboys</Text>
-            <Text style={styles.pos}>New England Patriots</Text>
-            <Text style={styles.pos}>Philadelphia Eagles</Text>
-            <Text style={styles.pos}>Los Angeles Rams</Text>
-            <Text style={styles.pos}>Chicago Bears</Text>
-            <Text style={styles.pos}>Denver Broncos</Text>
+            
         </List>
       </View>
     );

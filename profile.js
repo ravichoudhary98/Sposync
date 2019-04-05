@@ -180,7 +180,7 @@ export default class Profile extends Component {
           <Text style={{alignSelf: 'flex-end'}} onPress={()=> Actions.setting({})}>
             <Icon   name='ellipsis-v' size={30} color={'#fff'} />
           </Text>
-          <View style={styles.profilrpicwrap}>
+          <View style={styles.profilepicwrap}>
             <Image style={styles.profilrpic} source={require('./rakesh.jpg')}></Image>
           </View>
           <Text style={styles.username}>Rakes Sharma</Text>
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     color:"#fff",
     fontWeight:'bold'
   },
-  profilrpicwrap:{
+  profilepicwrap:{
     width:180,
     height:180,
     borderRadius: 100,

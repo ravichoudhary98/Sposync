@@ -8,6 +8,8 @@ import Home from './MainScreen';
 import Team from './Teams';
 import EditProfile from './EditProfile';
 import Settings from './Settings';
+import About from './About';
+
 import {
   Router,
   Scene,
@@ -24,9 +26,10 @@ export default class App extends React.Component {
           <Scene key = 'profile' component = {Profile} title = 'Profile' />
           <Scene key = 'chat' component = {Chat} title = 'Chat' />
           <Scene key = 'home' component = {Home} title = 'Home' />
-          <Scene key = 'team' component = {Team} />
-          <Scene key = 'editprofile' component = {EditProfile} />
-          <Scene key = 'setting' component = {Settings} />
+          <Scene key = 'team' component = {Team} title = 'Teams'/>
+          <Scene key = 'editprofile' component = {EditProfile} title = 'EditProfile'/>
+          <Scene key = 'setting' component = {Settings} title = 'settings'/>
+          <Scene key = 'about' component = {About} title = 'About' />
         </Scene>
       </Router>
     );
