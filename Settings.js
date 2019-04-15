@@ -11,7 +11,44 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Header,Button,Avatar} from 'react-native-elements';
+import ImagePicker from "react-native-image-picker";
+
 export default class Settings extends Component {
+
+  state = {
+    pickedImage: null
+  }
+
+  reset = () => {
+    this.setState({
+      pickedImage: null
+    });
+  }
+
+  pickImageHandler = () => {
+    ImagePicker.showImagePicker({title: "Pick an Image", maxWidth: 800, maxHeight: 600}, res => {
+      if (res.didCancel) {
+        console.log("User cancelled!");
+      } else if (res.error) {
+        console.log("Error", res.error);
+      } else {
+        this.setState({
+          pickedImage: { uri: res.uri }
+        });
+        
+      }
+    });
+  }
+
+  resetHandler = () =>{
+    this.reset();
+  }
+
+  saveEditProfile = () => {
+    Alert.alert("Data Auto-Saved")
+    this.props.navigation.navigate("profile")
+  }
+
   render() {
     return(
         <View style={styles.container}>
@@ -21,10 +58,10 @@ export default class Settings extends Component {
                     size='xlarge'
                     rounded
                     title="RS"
-                    onPress={() => Actions.editprofile({})}
-                    onLongPress={() => console.log("Works!")}
+                    onPress={this.pickImageHandler}
+                    onLongPress={this.resetHandler}
                     activeOpacity={0.7}
-                    source={require('./rakesh.jpg')}
+                    source={this.state.pickedImage}
                     showEditButton
                     
                     />

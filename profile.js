@@ -1,160 +1,6 @@
 
-/*import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity
-} from 'react-native';
 
-export default class Profile extends Component {
-
-  render() {
-    return (
-      <View style={styles.container}>
-          <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://avatars0.githubusercontent.com/u/10174591?s=460&v=4'}}/>
-          <View style={styles.body}>
-            <View style={styles.bodyContent}>
-              <Text style={styles.name}>Rakesh Sharma</Text>
-              <Text style={styles.info}>Centre Forward  / Football</Text>
-              
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Team</Text>  
-              </TouchableOpacity>              
-              
-            </View>
-        </View>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  header:{
-    backgroundColor: "#00BFFF",
-    height:200,
-  },
-  avatar: {
-    width: 130,
-    height: 130,
-    borderRadius: 63,
-    borderWidth: 4,
-    borderColor: "white",
-    marginBottom:10,
-    alignSelf:'center',
-    position: 'absolute',
-    marginTop:130
-  },
-  name:{
-    fontSize:22,
-    color:"#FFFFFF",
-    fontWeight:'600',
-  },
-  body:{
-    marginTop:40,
-  },
-  bodyContent: {
-    flex: 1,
-    alignItems: 'center',
-    padding:30,
-  },
-  name:{
-    fontSize:28,
-    color: "#696969",
-    fontWeight: "600"
-  },
-  info:{
-    fontSize:16,
-    color: "#00BFFF",
-    marginTop:10
-  },
-  description:{
-    fontSize:16,
-    color: "#696969",
-    marginTop:10,
-    textAlign: 'center'
-  },
-  buttonContainer: {
-    marginTop:10,
-    height:45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom:20,
-    width:250,
-    borderRadius:30,
-    backgroundColor: "#00BFFF",
-  },
-});
-*/
-
-/*import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView
-} from 'react-native';
-
-HEADER_MAX_HEIGHT=120
-HEADER_MIN_HEIGHT=70
-PROFILE_IMAGE_MAX_HEIGHT=80
-PROFILE_IMAGE_MIN_HEIGHT=40
-
-export default class Profile extends Component {
-
-  render() {
-    return (
-      <View style ={{flex: 1}}>
-        
-        <View style={{
-            position:'absolute',
-            top:0,
-            left:0,
-            right:0,
-            backgroundColor:'lightskyblue',
-            height:HEADER_MAX_HEIGHT,
-          }}> 
-        </View>
-
-        <ScrollView>
-          <View style={{
-            height:PROFILE_IMAGE_MAX_HEIGHT,
-            width:PROFILE_IMAGE_MAX_HEIGHT,
-            borderRadius:PROFILE_IMAGE_MAX_HEIGHT / 2,
-            borderColor:'white',
-            borderWidth:3,
-            overflow:'hidden',
-            marginTop:HEADER_MAX_HEIGHT - (PROFILE_IMAGE_MAX_HEIGHT / 2),
-            marginLeft:10
-
-          }}>
-            <Image source={require('./rakesh.jpg')}
-              style={{flex:1, width: null, height: null}}
-           ></Image>
-          </View>
-          <View>
-            <Text style={{fontWeight:'bold',fontSize:26,paddingLeft:10}}>Rakes Sharma</Text>
-            <Text style={{fontSize:16, color: "#00BFFF",marginTop:10}} >Centre Forward  / Football</Text>
-            </View>
-        </ScrollView>
- 
-      </View>
-         
-
-          
-          
-    
-        
-    );
-  }
-}
-*/
-
+/*
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -163,14 +9,13 @@ import {
   AppRegistry,
   Image,
   TouchableOpacity,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  AsyncStorage
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Profile extends Component {
-
-  
 
   render() {
     return(
@@ -255,6 +100,308 @@ const styles = StyleSheet.create({
   pos:{
     fontSize:18,
     color:'#f3fcd9',
+    fontWeight:'300',
+    fontStyle:'italic'
+
+  }
+});
+
+*/
+
+
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  AppRegistry,
+  Image,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+  ViewPagerAndroid,
+  AsyncStorage
+} from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { Container, Content, Header, Left, Body, Right, Segment, Button } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+var { height, width } = Dimensions.get('window');
+
+var images = [
+  require('./rakesh.jpg'),
+  require('./rakesh.jpg'),
+  require('./rakesh.jpg'),
+  
+]
+export default class Profile extends Component {
+
+  static navigationOptions = {
+
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="person" style={{ color: tintColor }} />
+    )
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      activeIndex: 0
+    }
+  }
+
+  segmentClicked(index) {
+    this.setState({
+      activeIndex: index
+    })
+  }
+  checkActive = (index) => {
+    if (this.state.activeIndex !== index) {
+      return (
+        { color: 'grey' }
+      )
+    }
+    else {
+      return (
+        {}
+      )
+    }
+
+  }
+
+  renderSectionOne() {
+    
+      return (
+        <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+          <View>
+          <Text style={styles.name} > Country - <Text style={styles.pos}>India</Text></Text>
+          <Text style={styles.name} > Game - <Text style={styles.pos}>Football</Text></Text>
+          <Text style={styles.name} > Achievements - <Text style={styles.pos}>State level Player</Text> </Text>
+          <Text style={styles.name}> Teams - <Text style={styles.pos}>NewTeam</Text></Text>
+          </View>
+        </View>
+      )
+   
+
+  }
+
+  renderSectionTwo() {
+    return images.map((image, index) => {
+      return (
+        <View key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
+          <Image style={{
+            flex: 1,
+            alignSelf: 'stretch',
+            width: undefined,
+            height: undefined,
+
+          }}
+            source={image}>
+          </Image>
+
+        </View>
+      )
+    })
+
+  }
+  renderSectionThree() {
+    return images.map((image, index) => {
+      return (
+        <View key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
+          <Image style={{
+            flex: 1,
+            alignSelf: 'stretch',
+            width: undefined,
+            height: undefined,
+
+          }}
+            source={image}>
+          </Image>
+
+        </View>
+      )
+    })
+
+  }
+  renderSectionFour() {
+    return images.map((image, index) => {
+      return (
+        <View key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
+          <Image style={{
+            flex: 1,
+            alignSelf: 'stretch',
+            width: undefined,
+            height: undefined,
+
+          }}
+            source={image}>
+          </Image>
+
+        </View>
+      )
+    })
+
+  }
+  renderSection() {
+
+    
+     if (this.state.activeIndex == 0) {
+      return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+         {this.renderSectionOne()}
+        </View>
+      )
+    }
+    else if (this.state.activeIndex == 1) {
+
+      return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+
+          {this.renderSectionTwo()}
+        </View>
+      )
+
+    }
+    else if (this.state.activeIndex == 2) {
+      return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+         {this.renderSectionThree()}
+        </View>
+      )
+    }
+    else if (this.state.activeIndex == 3) {
+      return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+         {this.renderSectionFour()}
+        </View>
+      )
+    }
+  }
+
+  componentDidMount() {
+    console.log(width)
+  }
+
+  render() {
+    return(
+      <Container style={styles.container}>
+        <Text style={{alignSelf: 'flex-end'}} onPress={()=> Actions.setting({})}>
+            <Icon   name='ellipsis-v' size={30} color={'#000'} />
+          </Text>
+
+        <Content>
+
+          <View style={{ paddingTop: 10 }}>
+            <View style={{backgroundColor:'#fff'}}>
+
+
+              <View
+                style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+                <Image source={require('./rakesh.jpg')}
+                  style={{ width: (width) / 4, height: (width) / 4, borderRadius:(width) / 8 }} />
+
+              </View>
+              <Text style={styles.username}>Rakes Sharma</Text>
+            </View>
+
+          </View>
+
+
+          
+
+
+          <View >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderTopWidth: (width) / 50, borderTopColor: '#fff', borderBottomWidth: (width) / 15, borderBottomColor: '#fff' }}>
+              <Button
+                onPress={() => this.segmentClicked(0)}
+                transparent
+                active={this.state.activeIndex == 0}
+                style={styles.button}
+              >
+                
+                <Icon name="asterisk"
+                  style={[{ fontSize: 32 }, {color:'#000'}, this.state.activeIndex == 0 ? {} : { color: 'grey' }]} >
+                </Icon>
+                <Text style={[{fontSize: 14},{ color:'#000'}, this.state.activeIndex == 0 ? {} : { color: 'grey' }]}>Details</Text>
+              </Button>
+
+              <Button
+                onPress={() => this.segmentClicked(1)}
+                transparent 
+                active={this.state.activeIndex == 1}
+                style={styles.button}
+                >
+                
+                <Icon name="camera" style={[{ fontSize: 32 },{color:'#000'}, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}></Icon>
+                <Text style={[{fontSize: 14},{color:'#000'}, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}>Photos</Text>
+              </Button>
+
+              <Button
+                onPress={() => this.segmentClicked(2)}
+                transparent 
+                active={this.state.activeIndex == 2}
+                style={styles.button}
+                >
+
+                <Icon name="users" style={[{ fontSize: 32 }, {color:'#000'}, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}></Icon>
+                <Text style={[{fontSize: 14},{ color:'#000'}, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}>Friends</Text>
+              </Button>
+
+              <Button
+                onPress={() => this.segmentClicked(3)}
+                transparent 
+                last 
+                active={this.state.activeIndex == 3}
+                style={styles.button}
+                >
+
+                <Icon name="cogs" style={[{ fontSize: 32 }, {color:'#000'}, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}></Icon>
+                <Text style={[{fontSize: 14},{ color:'#000'}, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}>Photos</Text>
+              </Button>
+              
+            </View>
+
+
+
+
+
+            {this.renderSection()}
+
+          </View>
+        </Content>
+      </Container >
+    );
+  }
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+
+  },
+  username: {
+    fontSize:22,
+    marginTop:10,
+    color:"#000",
+    fontWeight:'bold',
+    alignSelf:'center'
+  },
+  button: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  name:{
+    fontSize:22,
+    marginTop:10,
+    color:"#000",
+    fontWeight:'bold'
+  },
+  pos:{
+    fontSize:18,
+    color:'#000',
     fontWeight:'300',
     fontStyle:'italic'
 

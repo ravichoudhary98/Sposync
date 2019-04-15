@@ -133,3 +133,31 @@ const styles = StyleSheet.create({
   }
 });
  
+
+/*myValidate =() =>{
+    const {Username, password} = this.state;
+    if(Username=="" && password=="") {
+      Alert.alert('Please fill the Username and Password');
+    }
+
+    else if(Username !="ravi" && password != "virus") {
+      Alert.alert('Acount not found');
+    }
+
+    else if(Username =="ravi" && password == "") {
+      Alert.alert('Password Empty');
+    }
+
+    else if(Username =="" && password == "virus") {
+      Alert.alert('Username Empty');
+    }
+
+    else if(Username =="ravi" && password == "virus") {
+      this.props.navigation.navigate("profile")
+    }
+
+    else {
+      Alert.alert('Data not found');
+    }
+  }
+  */
