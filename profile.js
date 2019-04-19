@@ -225,22 +225,23 @@ export default class Profile extends Component {
 
   }
   renderSectionFour() {
-    return images.map((image, index) => {
+    
       return (
-        <View key={index} style={[{ width: (width) / 3 }, { height: (width) / 3 }, { marginBottom: 2 }, index % 3 !== 0 ? { paddingLeft: 2 } : { paddingLeft: 0 }]}>
-          <Image style={{
-            flex: 1,
-            alignSelf: 'stretch',
-            width: undefined,
-            height: undefined,
-
-          }}
-            source={image}>
-          </Image>
+        <View style={styles.fourthtabview}>
+        
+                
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.editprofile({}) }>
+                    <Icon style={{alignSelf: 'flex-start', }} name="pencil" size={25} color={'#000'} >    EditProfile </Icon>
+                </TouchableOpacity>
+            
+            
+            <TouchableOpacity style={styles.buttonContainer} onPress={() => Actions.about({})}>
+              <Icon style={{alignSelf: 'flex-start', }} name="info" size={25} color={'#000'} >      About </Icon>
+            </TouchableOpacity>
 
         </View>
       )
-    })
+    
 
   }
   renderSection() {
@@ -357,7 +358,7 @@ export default class Profile extends Component {
                 >
 
                 <Icon name="cogs" style={[{ fontSize: 32 }, {color:'#000'}, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}></Icon>
-                <Text style={[{fontSize: 14},{ color:'#000'}, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}>Photos</Text>
+                <Text style={[{fontSize: 14},{ color:'#000'}, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}>Settings</Text>
               </Button>
               
             </View>
@@ -382,6 +383,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
 
   },
+  fourthtabview:{
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems:'center',
+    justifyContent:'center',
+    
+  },
   username: {
     fontSize:22,
     marginTop:10,
@@ -404,6 +412,9 @@ const styles = StyleSheet.create({
     color:'#000',
     fontWeight:'300',
     fontStyle:'italic'
-
+  },
+  buttonContainer: {
+    borderTopWidth:width/15,
+    borderTopColor:'white',
   }
 });
