@@ -15,7 +15,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Header, Left, Body, Right, Segment, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger } from "react-native-popup-menu";
 var { height, width } = Dimensions.get('window');
 
 
@@ -156,9 +156,33 @@ export default class Teams extends Component {
   render() {
     return(
       <Container style={styles.container}>
-        <Text style={{alignSelf: 'flex-end'}} onPress = {() => this.props.navigation.navigate("teamsettings")}>
-            <Icon   name='cog' size={30} color={'#000'} />
-          </Text>
+        <View style ={{height:width/4,}}>
+          <MenuProvider style={{  alignSelf: 'flex-end', borderRightWidth: width / 28, borderRightColor: '#fff', borderTopWidth: width / 28, borderTopColor: '#fff' }}>
+            <Menu >
+
+              <MenuTrigger  >
+                <Text   ><Icon name='cog' size={30} color={'#000'} backgroundColor={'wight'} /></Text>
+              </MenuTrigger  >
+
+              <MenuOptions>
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.editteamprofile({})}>EditTeamProfile</Text>
+                </MenuOption>
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.about({})}>About</Text>
+                </MenuOption>
+
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.login({})}>Logout</Text>
+                </MenuOption>
+                <MenuOption value={2} disabled={false}>
+
+                </MenuOption>
+              </MenuOptions>
+
+            </Menu>
+          </MenuProvider>
+          </View>
 
         <Content>
 
@@ -260,4 +284,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  headerText: {
+    fontSize: 20,
+    margin: 10,
+    fontWeight: "bold",
+
+  },
+  menuContent: {
+    color: "#000",
+    
+    padding: 2,
+    fontSize: width/24
+  }
 });

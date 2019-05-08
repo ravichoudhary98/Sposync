@@ -120,12 +120,13 @@ import {
   FlatList,
   TouchableOpacity,
   ViewPagerAndroid,
-  AsyncStorage
+  AsyncStorage,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Header, Left, Body, Right, Segment, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger } from "react-native-popup-menu";
 var { height, width } = Dimensions.get('window');
 
 var images = [
@@ -220,6 +221,15 @@ export default class Profile extends Component {
             { key: 'Jillian', 'id': 6 },
             { key: 'Jimmy', 'id': 7 },
             { key: 'Julie', 'id': 8 },
+            { key: 'Devin', 'id': 1 },
+            { key: 'Jackson', 'id': 2 },
+            { key: 'James', 'id': 3 },
+            { key: 'Joel', 'id': 4 },
+            { key: 'John', 'id': 5 },
+            { key: 'Jillian', 'id': 6 },
+            { key: 'Jimmy', 'id': 7 },
+            { key: 'Julie', 'id': 8 },
+            
           ]}
           renderItem={({ item }) => <TouchableOpacity><Text style={styles.item}>{item.key}</Text></TouchableOpacity>}
 
@@ -290,93 +300,117 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
-        <View style={{ borderRightWidth: width / 28, borderRightColor: '#fff', borderTopWidth: width / 28, borderTopColor: '#fff' }}>
-          <Text style={{ alignSelf: 'flex-end' }} onPress={() => Actions.setting({})}>
-            <Icon name='ellipsis-v' size={30} color={'#000'} backgroundColor={'wight'} />
-          </Text>
-        </View>
-        <Content>
+      
+        <Container style={styles.container}>
+        <ScrollView>
+        <View style ={{height:width/4,}}>
+          <MenuProvider style={{  alignSelf: 'flex-end', borderRightWidth: width / 28, borderRightColor: '#fff', borderTopWidth: width / 28, borderTopColor: '#fff' }}>
+            <Menu >
 
-          <View style={{ paddingTop: 10 }}>
-            <View style={{ backgroundColor: '#fff' }}>
+              <MenuTrigger  >
+                <Text   ><Icon name='ellipsis-v' size={30} color={'#000'} backgroundColor={'wight'} /></Text>
+              </MenuTrigger  >
+
+              <MenuOptions>
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.editprofile({})}>EditProfile</Text>
+                </MenuOption>
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.about({})}>About</Text>
+                </MenuOption>
+
+                <MenuOption >
+                  <Text style={styles.menuContent} onPress={() => Actions.login({})}>Logout</Text>
+                </MenuOption>
+                
+              </MenuOptions>
+
+            </Menu>
+          </MenuProvider>
+          </View>
+          <Content>
+
+            <View style={{ paddingTop: 10 }}>
+              <View style={{ backgroundColor: '#fff' }}>
 
 
-              <View
-                style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-                <Image source={require('./rakesh.jpg')}
-                  style={{ width: (width) / 4, height: (width) / 4, borderRadius: (width) / 8 }} />
+                <View
+                  style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+                  <Image source={require('./rakesh.jpg')}
+                    style={{ width: (width) / 4, height: (width) / 4, borderRadius: (width) / 8 }} />
+
+                </View>
+                <Text style={styles.username}>Rakes Sharma</Text>
+              </View>
+
+            </View>
+
+
+
+
+
+            <View >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderTopWidth: (width) / 50, borderTopColor: '#fff', borderBottomWidth: (width) / 15, borderBottomColor: '#fff' }}>
+                <Button
+                  onPress={() => this.segmentClicked(0)}
+                  transparent
+                  active={this.state.activeIndex == 0}
+                  style={styles.button}
+                >
+
+                  <Icon name="asterisk"
+                    style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 0 ? {} : { color: 'grey' }]} >
+                  </Icon>
+                  <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 0 ? {} : { color: 'grey' }]}>Details</Text>
+                </Button>
+
+                <Button
+                  onPress={() => this.segmentClicked(1)}
+                  transparent
+                  active={this.state.activeIndex == 1}
+                  style={styles.button}
+                >
+
+                  <Icon name="camera" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}></Icon>
+                  <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}>Photos</Text>
+                </Button>
+
+                <Button
+                  onPress={() => this.segmentClicked(2)}
+                  transparent
+                  active={this.state.activeIndex == 2}
+                  style={styles.button}
+                >
+
+                  <Icon name="users" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}></Icon>
+                  <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}>Friends</Text>
+                </Button>
+
+                <Button
+                  onPress={() => this.segmentClicked(3)}
+                  transparent
+                  last
+                  active={this.state.activeIndex == 3}
+                  style={styles.button}
+                >
+
+                  <Icon name="cogs" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}></Icon>
+                  <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}>Settings</Text>
+                </Button>
 
               </View>
-              <Text style={styles.username}>Rakes Sharma</Text>
-            </View>
-
-          </View>
 
 
 
 
 
-          <View >
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderTopWidth: (width) / 50, borderTopColor: '#fff', borderBottomWidth: (width) / 15, borderBottomColor: '#fff' }}>
-              <Button
-                onPress={() => this.segmentClicked(0)}
-                transparent
-                active={this.state.activeIndex == 0}
-                style={styles.button}
-              >
-
-                <Icon name="asterisk"
-                  style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 0 ? {} : { color: 'grey' }]} >
-                </Icon>
-                <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 0 ? {} : { color: 'grey' }]}>Details</Text>
-              </Button>
-
-              <Button
-                onPress={() => this.segmentClicked(1)}
-                transparent
-                active={this.state.activeIndex == 1}
-                style={styles.button}
-              >
-
-                <Icon name="camera" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}></Icon>
-                <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 1 ? {} : { color: 'grey' }]}>Photos</Text>
-              </Button>
-
-              <Button
-                onPress={() => this.segmentClicked(2)}
-                transparent
-                active={this.state.activeIndex == 2}
-                style={styles.button}
-              >
-
-                <Icon name="users" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}></Icon>
-                <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 2 ? {} : { color: 'grey' }]}>Friends</Text>
-              </Button>
-
-              <Button
-                onPress={() => this.segmentClicked(3)}
-                transparent
-                last
-                active={this.state.activeIndex == 3}
-                style={styles.button}
-              >
-
-                <Icon name="cogs" style={[{ fontSize: 32 }, { color: '#000' }, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}></Icon>
-                <Text style={[{ fontSize: 14 }, { color: '#000' }, this.state.activeIndex == 3 ? {} : { color: 'grey' }]}>Settings</Text>
-              </Button>
+              {this.renderSection()}
 
             </View>
-
-
-
-
-
-            {this.renderSection()}
-
-          </View>
-        </Content>
-      </Container >
+          </Content>
+          </ScrollView>
+        </Container >
+      
     );
   }
 }
@@ -427,4 +461,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  
+  menuContent: {
+    color: "#000",
+    fontWeight: "bold",
+    padding: 2,
+    fontSize: width/24
+  }
 });
