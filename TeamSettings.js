@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Header,Button,Avatar} from 'react-native-elements';
 import ImagePicker from "react-native-image-picker";
 var { height, width } = Dimensions.get('window');
-export default class Settings extends Component {
+export default class TeamSettings extends Component {
 
   state = {
     pickedImage: null
@@ -56,9 +56,9 @@ export default class Settings extends Component {
             <View style={{alignSelf:'center', borderBottomWidth:width/15, borderTopWidth:width/20}}>
                 <Avatar
                     
-                    size='xlarge'
+                    size='medium'
                     rounded
-                    title="RS"
+                    title="logo"
                     onPress={this.pickImageHandler}
                     onLongPress={this.resetHandler}
                     activeOpacity={0.7}
@@ -70,19 +70,17 @@ export default class Settings extends Component {
             </View>
             <View style={{borderLeftWidth:width/22}}>
                 
-                <TouchableOpacity style={styles.buttonContainer} onPress = {() => this.props.navigation.navigate("editprofile")}>
-                    <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="pencil" size={22} color={'#fff'} >    EditProfile </Icon>
+                <TouchableOpacity style={styles.buttonContainer} onPress = {() => this.props.navigation.navigate("editteamprofile")}>
+                    <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="pencil" size={22} color={'#fff'} >    EditTeamProfile </Icon>
                 </TouchableOpacity>
             
             
             <TouchableOpacity style={styles.buttonContainer} onPress = {() => this.props.navigation.navigate("about")}>
               <Icon style={{alignSelf: 'flex-start', borderWidth:11}} name="info" size={22} color={'#fff'} >      About </Icon>
             </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonContainer} onPress = {() => this.props.navigation.navigate("login")}>
-                <Text style={styles.name}>        Log Out </Text>
-            </TouchableOpacity>
             </View> 
+            
+
         </View>
     );
   }
@@ -102,14 +100,7 @@ const styles = StyleSheet.create({
     borderWidth:11,
     color:"#fff",
   },
-  profilepicwrap:{
-    width:180,
-    height:180,
-    borderRadius: 100,
-    borderColor: 'rgba(0,0,0,0.4)',
-    borderWidth:11,
-    alignSelf: 'center'
-  },
+  
   
 
 });
