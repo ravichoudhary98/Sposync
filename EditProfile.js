@@ -53,10 +53,10 @@ export default class EditProfile extends Component {
     this.props.navigation.navigate("profile")
   }
 
-
-/*componentDidMount = () =>{
-    AsyncStorage.getItem('username').then((value) => this.setState({'username': value}));
-    AsyncStorage.getItem('completename').then((value) => this.setState({'completename': value}));
+  
+componentDidMount = () =>{
+    AsyncStorage.getItem('Game').then((value) => this.setState({'Game': value}));
+    AsyncStorage.getItem('Name').then((value) => this.setState({'Name': value}));
     AsyncStorage.getItem('password').then((value) => this.setState({'password': value}));
   }
 
@@ -65,14 +65,14 @@ export default class EditProfile extends Component {
     this.props.navigation.navigate("profile")
   }
 
-  setUsername = (value) => {
-    AsyncStorage.setItem('username', value);
-    this.setState({'username': value });
+  setGame = (value) => {
+    AsyncStorage.setItem('Game', value);
+    this.setState({'Game': value });
   }
 
-  setCompletename = (value) => {
-    AsyncStorage.setItem('completename', value);
-    this.setState({'completename': value });
+  setName = (value) => {
+    AsyncStorage.setItem('Name', value);
+    this.setState({'Name': value });
   }
 
   setPassword = (value) => {
@@ -84,13 +84,13 @@ export default class EditProfile extends Component {
     super(props);
 
     this.state = {
-      username: "",
+      Game: "",
       password: "",
-      completename: "",
+      Name: "",
     }
 
   }
-  */
+
   
 
   render() {
@@ -120,22 +120,13 @@ export default class EditProfile extends Component {
             </Text>
             <Item regular style={styles.inputuser}>
               <Input
-              value = {this.state.completename}
-              onchangeText= {this.setCompletename}
+              value = {this.state.Name}
+              onchangeText= {this.setName}
               autoCaptilize="none" style={{color:'#8392E0'}} />
             </Item>
           </View>
 
-          <View style={{marginBottom: 16}}>
-            <Text style={styles.labeluser}>
-              Email
-            </Text>
-            <Item regular style={styles.inputuser}>
-              <Input 
-              
-              autoCaptilize="none" style={{color:'#8392E0'}} />
-            </Item>
-          </View>
+          
           <View style={{marginBottom: 16}}>
             <Text style={styles.labeluser}>
               Password
@@ -153,8 +144,8 @@ export default class EditProfile extends Component {
             </Text>
             <Item regular style={styles.inputuser}>
               <Input 
-              value = {this.state.password}
-              onchangeText= {this.setPassword}
+              value = {this.state.Game}
+              onchangeText= {this.setGame}
               autoCaptilize="none" style={{color:'#8392E0'}} />
             </Item>
           </View>

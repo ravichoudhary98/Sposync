@@ -10,7 +10,8 @@ import {
   FlatList,
   TouchableOpacity,
   ViewPagerAndroid,
-  ScrollView
+  ScrollView,
+  YellowBox
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Header, Left, Body, Right, Segment, Button } from 'native-base';
@@ -24,7 +25,9 @@ export default class Teams extends Component {
   
   constructor(props) {
     super(props)
-
+    YellowBox.ignoreWarnings([
+      'Warning: isMounted(...) is deprecated', 'Module RCTImageLoader','MenuProviders'
+    ]);
     this.state = {
       activeIndex: 0
     }

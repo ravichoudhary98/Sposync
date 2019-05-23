@@ -121,7 +121,8 @@ import {
   TouchableOpacity,
   ViewPagerAndroid,
   AsyncStorage,
-  ScrollView
+  ScrollView,
+  YellowBox
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Container, Content, Header, Left, Body, Right, Segment, Button } from 'native-base';
@@ -143,12 +144,18 @@ export default class Profile extends Component {
       <Icon name="person" style={{ color: tintColor }} />
     )
   }
-
+  
   constructor(props) {
     super(props)
-
+    YellowBox.ignoreWarnings([
+      'Warning: isMounted(...) is deprecated', 'Module RCTImageLoader','MenuProviders'
+    ]);
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      Name: "Rakesh Sharma",
+      Game: "Football",
+      Achievements: "State level Player",
+      Country: "India"
     }
   }
 
@@ -176,9 +183,9 @@ export default class Profile extends Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View>
-          <Text style={styles.name} > Country - <Text style={styles.pos}>India</Text></Text>
-          <Text style={styles.name} > Game - <Text style={styles.pos}>Football</Text></Text>
-          <Text style={styles.name} > Achievements - <Text style={styles.pos}>State level Player</Text> </Text>
+          <Text style={styles.name} > Country - <Text style={styles.pos}>{this.state.Country}</Text></Text>
+          <Text style={styles.name} > Game - <Text style={styles.pos}>{this.state.Game}</Text></Text>
+          <Text style={styles.name} > Achievements - <Text style={styles.pos}>{this.state.Achievements}</Text> </Text>
           <TouchableOpacity onPress={() => Actions.teams({})}>
             <Text style={styles.name}   > Teams </Text>
           </TouchableOpacity>
@@ -340,7 +347,7 @@ export default class Profile extends Component {
                     style={{ width: (width) / 4, height: (width) / 4, borderRadius: (width) / 8 }} />
 
                 </View>
-                <Text style={styles.username}>Rakes Sharma</Text>
+                <Text style={styles.username}>{this.state.Name}</Text>
               </View>
 
             </View>
