@@ -58,6 +58,7 @@ componentDidMount = () =>{
     AsyncStorage.getItem('Game').then((value) => this.setState({'Game': value}));
     AsyncStorage.getItem('Name').then((value) => this.setState({'Name': value}));
     AsyncStorage.getItem('password').then((value) => this.setState({'password': value}));
+    AsyncStorage.getItem('Team').then((value) => this.setState({'Team': value}));
   }
 
   saveEditProfile = () => {
@@ -80,6 +81,11 @@ componentDidMount = () =>{
     this.setState({'password': value });
   }
 
+  setTeam = (value) => {
+    AsyncStorage.setItem('Team', value);
+    this.setState({'Team': value });
+  }
+
   constructor(props) {
     super(props);
 
@@ -87,6 +93,7 @@ componentDidMount = () =>{
       Game: "",
       password: "",
       Name: "",
+      Team: ""
     }
 
   }
@@ -146,6 +153,17 @@ componentDidMount = () =>{
               <Input 
               value = {this.state.Game}
               onchangeText= {this.setGame}
+              autoCaptilize="none" style={{color:'#8392E0'}} />
+            </Item>
+          </View>
+          <View style={{marginBottom: 16}}>
+            <Text style={styles.labeluser}>
+              Team
+            </Text>
+            <Item regular style={styles.inputuser}>
+              <Input 
+              value = {this.state.Team}
+              onchangeText= {this.setTeam}
               autoCaptilize="none" style={{color:'#8392E0'}} />
             </Item>
           </View>
